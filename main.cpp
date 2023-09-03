@@ -2,7 +2,12 @@
 
 using std::string;
 
-class Employee {
+class AbstractEmployee {
+  public:
+    virtual void AskForPromotion() = 0;
+};
+
+class Employee: public AbstractEmployee {
   private:
     string Name;
     string Company;
@@ -44,18 +49,19 @@ class Employee {
       Company = company;
       Age = age;
     }
+    
+    void AskToPromotion() {
+      if (Age > 30) 
+        std::cout << Name << "got promoted!" << std::endl;
+      else 
+        std::cout << Name << ", sorry no promotion for you!" << std::endl;
+    };
 };
 
 int main() {
-  Employee employee("Andres dos Santos", "Zaal Tecnologia", 16);
+  Employee employee1 = Employee("Saldina", "YT-CodeBeauty", 25);
+  // Employee employee2 = Employee("John", "Amazon", 35);
 
-  employee.setAge(15);
-  employee.setName("Andres dos Santos");
-  employee.setCompany("Epic Games");
-  
-  // employee.IntroduceYourself();
-
-  std::cout << employee.getName() << " is " << employee.getAge() << " years.";
-
-  return 0;
+  employee1.AskToPromotion();
+  // employee2.AskToPromotion();
 }
